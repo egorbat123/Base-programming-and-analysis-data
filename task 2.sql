@@ -1,3 +1,6 @@
+Этот запрос выдаёт не верный ответ. Я намеренно уделил мало времени для SQL, чтобы для начала получить хотя бы базовое представление о нём.
+Поэтому, пока что, у меня не достаточно опыта для решения подобных задач.
+
 select 
 	cat,
     store,
@@ -14,4 +17,5 @@ FROM sales as s
 join cats as c on s.item = c.item
 join prices as p on (s.store = p.store) and s.item = p.item
 GROUP by c.category, s.store, p.item, s.dates
-HAVING date > date('2017-03-27', '-14 day'))
+HAVING date > date('now', '-14 day'))
+
