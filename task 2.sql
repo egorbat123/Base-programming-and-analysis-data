@@ -88,3 +88,26 @@ join prices as p on s.store = p.store and s.item = p.item
 GROUP by c.category, s.store, p.item, s.dates
 HAVING date > date('1950-01-01'))
 group by date, store, item
+
+
+
+select 
+    date,
+    store,
+    item,
+    sum(qnt) as day_store_qnt,
+    sum(stock) as day_store_stock,
+    sum(price * qnt) as virucka
+from  (select 
+    s.dates as date,
+    s.store as store,
+    s.item as item,
+    p.price as price,
+    s.qnt as qnt,
+    s.stock as stock
+FROM sales as s
+join cats as c on s.item = c.item
+join prices as p on s.store = p.store and s.item = p.item)
+group by date, store, item
+HAVING day_store_stock = 0
+
